@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: tdd-activity
+  datasource:
+    url: ${PG_DATABASE_URL}
+    username: ${PG_USERNAME}
+    password: ${PG_PASSWORD}
