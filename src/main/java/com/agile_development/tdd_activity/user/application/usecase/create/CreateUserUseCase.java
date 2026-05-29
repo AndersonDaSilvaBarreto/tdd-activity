@@ -24,16 +24,16 @@ public class CreateUserUseCase {
         if(userExits) {
             throw new IllegalArgumentException("User already exists");
         }
-        var user = new User(
+        var newUser = new User(
                 new Name(request.name()),
                 new Email(request.email())
         );
-        repository.save(user);
+        var savedUser = repository.save(newUser);
         return new CreateUserResponse(
-                user.getId(),
-                user.getName().getValue(),
-                user.getEmail().getValue(),
-                user.getCreatedAt()
+                savedUser.getId().getValue(),
+                savedUser.getName().getValue(),
+                savedUser.getEmail().getValue(),
+                savedUser.getCreatedAt()
         );
     }
 }

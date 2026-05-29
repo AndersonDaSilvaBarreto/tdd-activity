@@ -3,11 +3,11 @@ package com.agile_development.tdd_activity.user.infra.persistence;
 import com.agile_development.tdd_activity.user.domain.entity.User;
 import com.agile_development.tdd_activity.user.domain.repository.UserRepository;
 import com.agile_development.tdd_activity.user.domain.valueobject.Email;
+import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -20,9 +20,10 @@ public class JpaUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(UUID id) {
+    public Optional<User> findById(UserId id) {
         return repository.findById(id);
     }
+
 
     @Override
     public Optional<User> findByEmail(Email email) {

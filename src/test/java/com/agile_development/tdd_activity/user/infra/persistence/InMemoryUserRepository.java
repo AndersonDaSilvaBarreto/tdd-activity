@@ -3,6 +3,7 @@ package com.agile_development.tdd_activity.user.infra.persistence;
 import com.agile_development.tdd_activity.user.domain.entity.User;
 import com.agile_development.tdd_activity.user.domain.repository.UserRepository;
 import com.agile_development.tdd_activity.user.domain.valueobject.Email;
+import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +20,13 @@ public class InMemoryUserRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findById(UUID id) {
-
+    public Optional<User> findById(UserId id) {
         return users.stream()
                 .filter(user ->
-                        user.getId().equals(id)
-                )
+                        user.getId().equals(id))
                 .findFirst();
     }
+
 
     @Override
     public Optional<User> findByEmail(Email email) {
