@@ -26,7 +26,7 @@ public class User {
     private Instant createdAt;
 
     protected User() {}
-    public User(Name name, Email email) {
+    private User(Name name, Email email) {
         if(name == null) {
             throw new IllegalArgumentException(
                     "Name cannot be null"
@@ -41,6 +41,9 @@ public class User {
         this.name = name;
         this.email = email;
         this.createdAt = Instant.now();
+    }
+    public static User create(Name name, Email email) {
+        return new User(name, email);
     }
     public void changeName(Name newName) {
         if(newName == null) {

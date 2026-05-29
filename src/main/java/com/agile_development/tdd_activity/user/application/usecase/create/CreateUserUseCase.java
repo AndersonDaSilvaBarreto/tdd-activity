@@ -20,7 +20,7 @@ public class CreateUserUseCase {
     public CreateUserResponse execute(
             CreateUserRequest request
     ) {
-        var newUser = new User(
+        var newUser = User.create(
                 Name.of(request.name()),
                 Email.of(request.email())
         );
