@@ -26,11 +26,11 @@ public class JpaUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findByEmail(Email email) {
-        return Optional.empty();
+        return repository.findByEmail(email);
     }
 
     @Override
     public boolean existsByEmail(Email email) {
-        return false;
+        return repository.existsByEmail(email);
     }
 }

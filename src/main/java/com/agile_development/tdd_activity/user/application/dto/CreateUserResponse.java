@@ -1,4 +1,4 @@
-package com.agile_development.tdd_activity.user.application.controller.create;
+package com.agile_development.tdd_activity.user.application.dto;
 
 import java.time.Instant;
 import java.util.UUID;

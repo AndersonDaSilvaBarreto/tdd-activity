@@ -1,6 +1,7 @@
 package com.agile_development.tdd_activity.user.application.controller.create;
 
-import com.agile_development.tdd_activity.user.application.usecase.create.CreateUserCommand;
+import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
+import com.agile_development.tdd_activity.user.application.dto.CreateUserResponse;
 import com.agile_development.tdd_activity.user.application.usecase.create.CreateUserUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,17 +22,8 @@ public class CreateUserController {
     public ResponseEntity<CreateUserResponse> create(
             @RequestBody @Valid CreateUserRequest request
             ) {
-        var command = new CreateUserCommand(
-                request.name(),
-                request.email()
-        );
-        var result = useCase.execute(command);
-        var response = new CreateUserResponse(
-                result.id(),
-                result.name(),
-                result.email(),
-                result.createdAt()
-        );
+
+        CreateUserResponse response = useCase.execute(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);
