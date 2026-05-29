@@ -2,21 +2,19 @@ package com.agile_development.tdd_activity.user.domain.entity;
 
 import com.agile_development.tdd_activity.user.domain.valueobject.Email;
 import com.agile_development.tdd_activity.user.domain.valueobject.Name;
+import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
 import java.time.Instant;
-import java.util.UUID;
-
 @Entity
 @Table(name = "tb_user")
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
-    @Id
+    @EmbeddedId
     @EqualsAndHashCode.Include
-    private UUID id;
+    private UserId id;
 
     @Embedded
     private Name name;
@@ -39,7 +37,7 @@ public class User {
                     "Email cannot be null"
             );
         }
-        this.id = UUID.randomUUID();
+        this.id = UserId.generate();
         this.name = name;
         this.email = email;
         this.createdAt = Instant.now();
