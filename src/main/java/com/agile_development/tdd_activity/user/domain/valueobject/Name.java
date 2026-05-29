@@ -15,10 +15,14 @@ public class Name {
 
     protected Name() {}
 
-    public Name(String value) {
+    private Name(String value) {
         value = normalize(value);
         validate(value);
         this.value = value;
+
+    }
+    public static Name of(String value) {
+        return new Name(value);
 
     }
 

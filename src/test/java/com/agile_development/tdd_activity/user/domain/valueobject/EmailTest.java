@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class EmailTest {
     @Test
     void shouldCreateValidEmail() {
-        var email = new Email("test@gmail.com");
+        var email = Email.of("test@gmail.com");
         assertEquals(
                 "test@gmail.com",
                 email.getValue()
@@ -17,14 +17,14 @@ public class EmailTest {
     void shouldThrowExceptionWhenEmailIsBlank() {
 
         assertThrows(IllegalArgumentException.class,
-                () -> new Email(""));
+                () -> Email.of(""));
     }
     @Test
     void shouldThrowExceptionWhenEmailIsNull() {
 
         assertThrows(
                 IllegalArgumentException.class,
-                () -> new Email(null)
+                () -> Email.of(null)
         );
     }
     @Test
@@ -32,7 +32,7 @@ public class EmailTest {
 
         assertThrows(
                 IllegalArgumentException.class,
-                () -> new Email("invalid email")
+                () -> Email.of("invalid email")
         );
     }
 }

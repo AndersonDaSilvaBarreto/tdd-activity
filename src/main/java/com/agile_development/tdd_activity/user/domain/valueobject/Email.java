@@ -15,20 +15,28 @@ public class Email {
 
     protected Email() {}
 
-    public Email(String value) {
-        if (value == null || value.isBlank()) {
+    private Email(String value) {
+        var normalizedEmail = value.trim().toLowerCase();
+        this.validate(normalizedEmail);
+        this.value = normalizedEmail;
+    }
+
+    public static Email of(String value) {
+        return new Email(value);
+    }
+    private void validate(String email) {
+        if (email == null || email.isBlank()) {
             throw new IllegalArgumentException(
                     "Email cannot be null or blank"
             );
         }
-        if (!value.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             throw new IllegalArgumentException("Invalid email");
         }
-        this.value = value;
     }
 
     @Override
     public String toString() {
-        return value.toLowerCase();
+        return value;
     }
 }

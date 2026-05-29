@@ -20,14 +20,15 @@ public class CreateUserUseCase {
     public CreateUserResponse execute(
             CreateUserRequest request
     ) {
-        boolean userExits = repository.existsByEmail(new Email(request.email()));
-        if(userExits) {
+        var newUser = new User(
+                Name.of(request.name()),
+                Email.of(request.email())
+        );
+        boolean userExists = repository.existsByEmail(newUser.getEmail());
+        if (userExists) {
             throw new IllegalArgumentException("User already exists");
         }
-        var newUser = new User(
-                new Name(request.name()),
-                new Email(request.email())
-        );
+
         var savedUser = repository.save(newUser);
         return new CreateUserResponse(
                 savedUser.getId().getValue(),
