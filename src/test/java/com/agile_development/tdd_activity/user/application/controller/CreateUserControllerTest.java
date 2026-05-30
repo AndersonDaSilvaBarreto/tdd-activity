@@ -1,5 +1,5 @@
 package com.agile_development.tdd_activity.user.application.controller;
-import com.agile_development.tdd_activity.user.application.controller.create.CreateUserController;
+import com.agile_development.tdd_activity.user.web.controller.CreateUserController;
 import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
 import com.agile_development.tdd_activity.user.application.dto.CreateUserResponse;
 import com.agile_development.tdd_activity.user.application.usecase.create.CreateUserUseCase;

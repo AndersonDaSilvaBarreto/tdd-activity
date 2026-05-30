@@ -1,4 +1,4 @@
-package com.agile_development.tdd_activity.user.application.controller.create;
+package com.agile_development.tdd_activity.user.web.controller;
 
 import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
 import com.agile_development.tdd_activity.user.application.dto.CreateUserResponse;
