@@ -5,9 +5,11 @@ import com.agile_development.tdd_activity.user.domain.repository.UserRepository;
 import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import com.agile_development.tdd_activity.user.web.dto.UserResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+@Service
 @RequiredArgsConstructor
 public class GetUserByIdUseCase {
     private final UserRepository userRepository;
