@@ -28,7 +28,7 @@ public class CreateUserControllerTest {
     private CreateUserUseCase createUserUseCase;
 
     @Test
-    void shouldCreateUserSuccessfully() throws Exception {
+    public void shouldCreateUserSuccessfully() throws Exception {
 
     var request = new CreateUserRequest(
             "Anderson",
@@ -36,8 +36,8 @@ public class CreateUserControllerTest {
     );
 
     var newUser = User.create(
-            Name.of("Anderson"),
-            Email.of("anderson@gmail.com")
+            Name.of(request.name()),
+            Email.of(request.email())
     );
     var response = UserResponse.of(newUser);
 
