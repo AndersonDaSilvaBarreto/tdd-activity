@@ -1,6 +1,6 @@
-package com.agile_development.tdd_activity.user.application.usecase.create;
+package com.agile_development.tdd_activity.user.application.usecase;
 
-import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
+import com.agile_development.tdd_activity.user.web.dto.CreateUserRequest;
 import com.agile_development.tdd_activity.user.infra.persistence.InMemoryUserRepository;
 import org.junit.jupiter.api.Test;
 

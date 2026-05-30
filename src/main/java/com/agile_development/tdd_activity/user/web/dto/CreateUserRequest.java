@@ -1,4 +1,4 @@
-package com.agile_development.tdd_activity.user.application.dto;
+package com.agile_development.tdd_activity.user.web.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

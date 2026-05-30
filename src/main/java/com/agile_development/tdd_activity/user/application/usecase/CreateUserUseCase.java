@@ -1,8 +1,8 @@
-package com.agile_development.tdd_activity.user.application.usecase.create;
+package com.agile_development.tdd_activity.user.application.usecase;
 
 
-import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
-import com.agile_development.tdd_activity.user.application.dto.CreateUserResponse;
+import com.agile_development.tdd_activity.user.web.dto.CreateUserRequest;
+import com.agile_development.tdd_activity.user.web.dto.UserResponse;
 import com.agile_development.tdd_activity.user.domain.entity.User;
 import com.agile_development.tdd_activity.user.domain.repository.UserRepository;
 import com.agile_development.tdd_activity.user.domain.valueobject.Email;
@@ -14,27 +14,22 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class CreateUserUseCase {
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Transactional
-    public CreateUserResponse execute(
+    public UserResponse execute(
             CreateUserRequest request
     ) {
         var newUser = User.create(
                 Name.of(request.name()),
                 Email.of(request.email())
         );
-        boolean userExists = repository.existsByEmail(newUser.getEmail());
+        boolean userExists = userRepository.existsByEmail(newUser.getEmail());
         if (userExists) {
             throw new IllegalArgumentException("User already exists");
         }
 
-        var savedUser = repository.save(newUser);
-        return new CreateUserResponse(
-                savedUser.getId().getValue(),
-                savedUser.getName().getValue(),
-                savedUser.getEmail().getValue(),
-                savedUser.getCreatedAt()
-        );
+        var savedUser = userRepository.save(newUser);
+        return UserResponse.of(savedUser);
     }
 }

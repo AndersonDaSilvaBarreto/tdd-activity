@@ -1,8 +1,8 @@
 package com.agile_development.tdd_activity.user.web.controller;
 
-import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
-import com.agile_development.tdd_activity.user.application.dto.CreateUserResponse;
-import com.agile_development.tdd_activity.user.application.usecase.create.CreateUserUseCase;
+import com.agile_development.tdd_activity.user.web.dto.CreateUserRequest;
+import com.agile_development.tdd_activity.user.web.dto.UserResponse;
+import com.agile_development.tdd_activity.user.application.usecase.CreateUserUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,11 +19,11 @@ public class CreateUserController {
     private final CreateUserUseCase useCase;
 
     @PostMapping
-    public ResponseEntity<CreateUserResponse> create(
+    public ResponseEntity<UserResponse> create(
             @RequestBody @Valid CreateUserRequest request
             ) {
 
-        CreateUserResponse response = useCase.execute(request);
+        UserResponse response = useCase.execute(request);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(response);

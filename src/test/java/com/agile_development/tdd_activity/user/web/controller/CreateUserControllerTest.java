@@ -1,8 +1,7 @@
 package com.agile_development.tdd_activity.user.web.controller;
-import com.agile_development.tdd_activity.user.web.controller.CreateUserController;
-import com.agile_development.tdd_activity.user.application.dto.CreateUserRequest;
-import com.agile_development.tdd_activity.user.application.dto.CreateUserResponse;
-import com.agile_development.tdd_activity.user.application.usecase.create.CreateUserUseCase;
+import com.agile_development.tdd_activity.user.web.dto.CreateUserRequest;
+import com.agile_development.tdd_activity.user.web.dto.UserResponse;
+import com.agile_development.tdd_activity.user.application.usecase.CreateUserUseCase;
 import com.agile_development.tdd_activity.user.domain.entity.User;
 import com.agile_development.tdd_activity.user.domain.valueobject.Email;
 import com.agile_development.tdd_activity.user.domain.valueobject.Name;
@@ -40,7 +39,7 @@ public class CreateUserControllerTest {
             Name.of("Anderson"),
             Email.of("anderson@gmail.com")
     );
-    var response = new CreateUserResponse(newUser);
+    var response = UserResponse.of(newUser);
 
     when(createUserUseCase.execute(request))
             .thenReturn(response);
