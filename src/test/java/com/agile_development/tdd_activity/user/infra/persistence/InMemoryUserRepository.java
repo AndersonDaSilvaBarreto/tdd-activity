@@ -8,7 +8,6 @@ import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 public class InMemoryUserRepository implements UserRepository {
     private final List<User> users = new ArrayList<>();
@@ -36,6 +35,12 @@ public class InMemoryUserRepository implements UserRepository {
                         user.getEmail().equals(email)
                 )
                 .findFirst();
+    }
+
+    @Override
+    public boolean existsById(UserId userId) {
+        return users.stream()
+                .anyMatch(user -> user.getId().equals(userId));
     }
 
     @Override

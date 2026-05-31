@@ -11,5 +11,6 @@ public interface UserRepository {
     User save(User user);
     Optional<User> findById(UserId id);
     Optional<User> findByEmail(Email email);
+    boolean existsById(UserId userId);
     boolean existsByEmail(Email email);
 }
