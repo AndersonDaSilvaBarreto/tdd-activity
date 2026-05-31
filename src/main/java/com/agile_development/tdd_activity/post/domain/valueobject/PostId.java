@@ -1,4 +1,4 @@
-package com.agile_development.tdd_activity.user.domain.valueobject;
+package com.agile_development.tdd_activity.post.domain.valueobject;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -13,30 +13,26 @@ import java.util.UUID;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class UserId {
-
-    @EqualsAndHashCode.Include
+public class PostId {
     @Column(name = "id")
+    @EqualsAndHashCode.Include
     private UUID value;
 
-
-    private UserId(UUID value) {
+    private PostId(UUID value) {
         validate(value);
         this.value = value;
     }
-
-    public static UserId generate() {
-        return new UserId(UUID.randomUUID());
+    public static PostId generate() {
+        return new PostId(UUID.randomUUID());
     }
-    public static UserId of(UUID value) {
-        return new UserId(value);
+    public static PostId of(UUID value) {
+        return new PostId(value);
     }
     private void validate(UUID value) {
         if(value == null) {
-            throw new IllegalArgumentException("UserId cannot be null");
+            throw new IllegalArgumentException("PostId cannot be null");
         }
     }
-
     @Override
     public String toString() {
         return this.getValue().toString();
