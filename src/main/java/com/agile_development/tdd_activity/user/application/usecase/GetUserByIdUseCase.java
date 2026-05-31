@@ -6,6 +6,7 @@ import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import com.agile_development.tdd_activity.user.web.dto.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import java.util.UUID;
 public class GetUserByIdUseCase {
     private final UserRepository userRepository;
 
+    @Transactional(readOnly = true)
     public UserResponse execute(UUID id) {
 
         UserId userId = UserId.of(id);
