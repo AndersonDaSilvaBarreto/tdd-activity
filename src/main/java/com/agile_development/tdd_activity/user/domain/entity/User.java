@@ -4,12 +4,16 @@ import com.agile_development.tdd_activity.user.domain.valueobject.Email;
 import com.agile_development.tdd_activity.user.domain.valueobject.Name;
 import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.time.Instant;
 @Entity
 @Table(name = "tb_user")
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class User {
     @EmbeddedId
@@ -24,19 +28,8 @@ public class User {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-
-    protected User() {}
     private User(Name name, Email email) {
-        if(name == null) {
-            throw new IllegalArgumentException(
-                    "Name cannot be null"
-            );
-        }
-        if (email == null) {
-            throw new IllegalArgumentException(
-                    "Email cannot be null"
-            );
-        }
+        validate(name,email);
         this.id = UserId.generate();
         this.name = name;
         this.email = email;
@@ -52,6 +45,18 @@ public class User {
             );
         }
         this.name = newName;
+    }
+    private void validate(Name name, Email email) {
+        if(name == null) {
+            throw new IllegalArgumentException(
+                    "Name cannot be null"
+            );
+        }
+        if (email == null) {
+            throw new IllegalArgumentException(
+                    "Email cannot be null"
+            );
+        }
     }
     public void changeEmail(Email newEmail) {
         if(newEmail == null) {
