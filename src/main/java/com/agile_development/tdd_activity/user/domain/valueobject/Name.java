@@ -16,8 +16,7 @@ public class Name {
     protected Name() {}
 
     private Name(String value) {
-        value = normalize(value);
-        validate(value);
+        validate(value == null ? null : value.trim());
         this.value = value;
 
     }
@@ -26,9 +25,6 @@ public class Name {
 
     }
 
-    private String normalize(String value) {
-        return value == null ? null : value.trim();
-    }
 
     private void validate(String value) {
 
