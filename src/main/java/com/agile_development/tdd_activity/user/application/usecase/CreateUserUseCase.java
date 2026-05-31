@@ -20,7 +20,7 @@ public class CreateUserUseCase {
     public UserResponse execute(
             CreateUserRequest request
     ) {
-        var newUser = User.create(
+        User newUser = User.create(
                 Name.of(request.name()),
                 Email.of(request.email())
         );
@@ -29,7 +29,7 @@ public class CreateUserUseCase {
             throw new IllegalArgumentException("User already exists");
         }
 
-        var savedUser = userRepository.save(newUser);
+        User savedUser = userRepository.save(newUser);
         return UserResponse.of(savedUser);
     }
 }
