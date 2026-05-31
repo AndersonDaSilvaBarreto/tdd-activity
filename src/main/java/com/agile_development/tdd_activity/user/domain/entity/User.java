@@ -38,14 +38,7 @@ public class User {
     public static User create(Name name, Email email) {
         return new User(name, email);
     }
-    public void changeName(Name newName) {
-        if(newName == null) {
-            throw new IllegalArgumentException(
-                    "Name cannot be null"
-            );
-        }
-        this.name = newName;
-    }
+
     private void validate(Name name, Email email) {
         if(name == null) {
             throw new IllegalArgumentException(
@@ -58,12 +51,21 @@ public class User {
             );
         }
     }
+    public void changeName(Name newName) {
+        if(newName == null) {
+            throw new IllegalArgumentException(
+                    "Name cannot be null"
+            );
+        }
+        this.name = newName;
+    }
     public void changeEmail(Email newEmail) {
         if(newEmail == null) {
             throw new IllegalArgumentException(
                     "Email cannot be null"
             );
         }
+        this.email = newEmail;
     }
 
 }
