@@ -13,7 +13,7 @@ import java.util.UUID;
 @Repository
 @RequiredArgsConstructor
 public class JpaPostRepository implements PostRepository {
-    private final JpaPostRepository repository;
+    private final SpringDataPostRepository repository;
 
 
     @Override

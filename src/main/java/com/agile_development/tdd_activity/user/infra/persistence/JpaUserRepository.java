@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public class JpaUserRepository implements UserRepository {
-    private final UserJpaRepository repository;
+    private final SpringDataUserRepository repository;
 
     @Override
     public User save(User user) {
