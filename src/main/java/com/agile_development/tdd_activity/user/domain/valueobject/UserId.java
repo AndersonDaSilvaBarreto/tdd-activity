@@ -2,10 +2,7 @@ package com.agile_development.tdd_activity.user.domain.valueobject;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -20,22 +17,17 @@ public class UserId {
     private UUID value;
 
 
-    private UserId(UUID value) {
-        validate(value);
+    private UserId(@NonNull UUID value) {
         this.value = value;
     }
 
     public static UserId generate() {
         return new UserId(UUID.randomUUID());
     }
-    public static UserId of(UUID value) {
+    public static UserId of(@NonNull UUID value) {
         return new UserId(value);
     }
-    private void validate(UUID value) {
-        if(value == null) {
-            throw new IllegalArgumentException("UserId cannot be null");
-        }
-    }
+
 
     @Override
     public String toString() {

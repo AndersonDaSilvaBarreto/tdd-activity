@@ -1,4 +1,4 @@
-package com.agile_development.tdd_activity.user.domain.event;
+package com.agile_development.tdd_activity.user.event;
 
 import java.util.UUID;
 
