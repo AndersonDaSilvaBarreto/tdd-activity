@@ -2,10 +2,7 @@ package com.agile_development.tdd_activity.post.domain.valueobject;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
@@ -18,21 +15,16 @@ public class PostId {
     @EqualsAndHashCode.Include
     private UUID value;
 
-    private PostId(UUID value) {
-        validate(value);
+    private PostId(@NonNull UUID value) {
         this.value = value;
     }
     public static PostId generate() {
         return new PostId(UUID.randomUUID());
     }
-    public static PostId of(UUID value) {
+    public static PostId of(@NonNull UUID value) {
         return new PostId(value);
     }
-    private void validate(UUID value) {
-        if(value == null) {
-            throw new IllegalArgumentException("PostId cannot be null");
-        }
-    }
+
     @Override
     public String toString() {
         return this.getValue().toString();

@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 
 @Embeddable
 @Getter
@@ -15,17 +16,17 @@ public class Content {
 
     protected Content() {}
 
-    private Content(String value) {
-        validate(value == null ? null : value.trim());
+    private Content(@NonNull String value) {
+        validate(value.trim());
         this.value = value;
     }
 
-    public static Content of(String value) {
+    public static Content of(@NonNull String value) {
         return new Content(value);
     }
 
-    private void validate(String value) {
-        if(value == null || value.isBlank()) {
+    private void validate(@NonNull String value) {
+        if(value.isBlank()) {
             throw new IllegalArgumentException("Content cannot be null or blank");
         }
         if(value.length() < 15 || value.length() > 1024) {
