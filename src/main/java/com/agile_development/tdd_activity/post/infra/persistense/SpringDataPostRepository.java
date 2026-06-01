@@ -9,4 +9,5 @@ import java.util.UUID;
 
 public interface SpringDataPostRepository extends JpaRepository<Post, PostId> {
     List<Post> findPostsByAuthorId(UUID authorId);
+    void deleteAllByAuthorId(UUID authorId);
 }

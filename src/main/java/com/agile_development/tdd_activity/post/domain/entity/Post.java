@@ -21,7 +21,7 @@ public class Post {
     @Embedded
     private Content content;
 
-    @Column(name = "author_id")
+    @Column(name = "author_id", nullable = false)
     private UUID authorId;
 
     @Column(name = "create_at", nullable = false, updatable = false)

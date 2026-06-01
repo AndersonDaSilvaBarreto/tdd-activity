@@ -1,7 +1,7 @@
 package com.agile_development.tdd_activity.user.application.usecase;
 
 import com.agile_development.tdd_activity.user.domain.entity.User;
-import com.agile_development.tdd_activity.user.event.UserDeletedEvent;
+import com.agile_development.tdd_activity.user.api.event.UserDeletedEvent;
 import com.agile_development.tdd_activity.user.domain.repository.UserRepository;
 import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import lombok.NonNull;

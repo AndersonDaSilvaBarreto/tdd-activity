@@ -11,4 +11,5 @@ public interface PostRepository {
     Post save (Post post);
     Optional<Post> findById(PostId postId);
     List<Post> findPostsByAuthorId(UUID authorId);
+    void deleteAllByAuthorId(UUID authorId);
 }
