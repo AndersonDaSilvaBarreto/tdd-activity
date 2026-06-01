@@ -8,6 +8,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -17,6 +18,7 @@ public class DeleteUserUseCase {
     private final UserRepository repository;
     private final ApplicationEventPublisher eventPublisher;
 
+    @Transactional
     public void execute(@NonNull UUID id) {
         UserId userId = UserId.of(id);
         User user = repository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
