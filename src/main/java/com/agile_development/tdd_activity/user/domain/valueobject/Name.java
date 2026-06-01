@@ -2,33 +2,28 @@ package com.agile_development.tdd_activity.user.domain.valueobject;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 @Embeddable
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Name {
     @Column(name = "name", nullable = false)
     @EqualsAndHashCode.Include
     private String value;
 
-    protected Name() {}
-
-    private Name(String value) {
-        validate(value == null ? null : value.trim());
+    private Name(@NonNull String value) {
+        validate(value.trim());
         this.value = value;
-
     }
-    public static Name of(String value) {
+    public static Name of(@NonNull String value) {
         return new Name(value);
-
     }
 
 
-    private void validate(String value) {
-
-        if (value == null || value.isBlank()) {
+    private void validate(@NonNull String value) {
+        if (value.isBlank()) {
             throw new IllegalArgumentException(
                     "Name cannot be blank"
             );

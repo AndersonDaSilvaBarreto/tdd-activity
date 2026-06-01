@@ -2,30 +2,28 @@ package com.agile_development.tdd_activity.user.domain.valueobject;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.*;
 
 @Embeddable
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Email {
     @Column(name = "email",nullable = false, unique = true)
     @EqualsAndHashCode.Include
     private String value;
 
-    protected Email() {}
-
-    private Email(String value) {
+    private Email(@NonNull String value) {
         var normalizedEmail = value.trim().toLowerCase();
         this.validate(normalizedEmail);
         this.value = normalizedEmail;
     }
 
-    public static Email of(String value) {
+    public static Email of(@NonNull String value) {
         return new Email(value);
     }
-    private void validate(String email) {
-        if (email == null || email.isBlank()) {
+    private void validate(@NonNull String email) {
+        if (email.isBlank()) {
             throw new IllegalArgumentException(
                     "Email cannot be null or blank"
             );

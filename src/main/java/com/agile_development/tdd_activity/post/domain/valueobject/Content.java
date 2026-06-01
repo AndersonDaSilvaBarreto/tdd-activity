@@ -2,19 +2,16 @@ package com.agile_development.tdd_activity.post.domain.valueobject;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 @Embeddable
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Content {
     @Column(name = "content", nullable = false,length = 1024)
     @EqualsAndHashCode.Include
     private String value;
-
-    protected Content() {}
 
     private Content(@NonNull String value) {
         validate(value.trim());
