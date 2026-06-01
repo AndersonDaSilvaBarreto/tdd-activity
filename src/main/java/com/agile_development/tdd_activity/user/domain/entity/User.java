@@ -4,10 +4,7 @@ import com.agile_development.tdd_activity.user.domain.valueobject.Email;
 import com.agile_development.tdd_activity.user.domain.valueobject.Name;
 import com.agile_development.tdd_activity.user.domain.valueobject.UserId;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.Instant;
 @Entity
@@ -28,43 +25,19 @@ public class User {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
-    private User(Name name, Email email) {
-        validate(name,email);
+    private User(@NonNull Name name,@NonNull Email email) {
         this.id = UserId.generate();
         this.name = name;
         this.email = email;
         this.createdAt = Instant.now();
     }
-    public static User create(Name name, Email email) {
+    public static User create(@NonNull Name name,@NonNull Email email) {
         return new User(name, email);
     }
-
-    private void validate(Name name, Email email) {
-        if(name == null) {
-            throw new IllegalArgumentException(
-                    "Name cannot be null"
-            );
-        }
-        if (email == null) {
-            throw new IllegalArgumentException(
-                    "Email cannot be null"
-            );
-        }
-    }
-    public void changeName(Name newName) {
-        if(newName == null) {
-            throw new IllegalArgumentException(
-                    "Name cannot be null"
-            );
-        }
+    public void changeName(@NonNull Name newName) {
         this.name = newName;
     }
-    public void changeEmail(Email newEmail) {
-        if(newEmail == null) {
-            throw new IllegalArgumentException(
-                    "Email cannot be null"
-            );
-        }
+    public void changeEmail(@NonNull Email newEmail) {
         this.email = newEmail;
     }
 

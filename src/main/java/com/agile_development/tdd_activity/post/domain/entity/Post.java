@@ -34,7 +34,7 @@ public class Post {
         this.createAt = Instant.now();
     }
 
-    public static Post create(Content content, UUID authorId) {
+    public static Post create(@NonNull Content content,@NonNull UUID authorId) {
         return new Post(content, authorId);
     }
 
