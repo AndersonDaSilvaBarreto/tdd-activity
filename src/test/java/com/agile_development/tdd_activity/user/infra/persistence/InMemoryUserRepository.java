@@ -51,4 +51,9 @@ public class InMemoryUserRepository implements UserRepository {
                         user.getEmail().equals(email)
                 );
     }
+
+    @Override
+    public void deleteUser(User user) {
+        users.remove(user);
+    }
 }

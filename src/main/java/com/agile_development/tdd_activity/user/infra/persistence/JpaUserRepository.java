@@ -32,6 +32,7 @@ public class JpaUserRepository implements UserRepository {
 
     @Override
     public boolean existsById(UserId userId) {
+
         return repository.existsById(userId);
     }
 
@@ -39,5 +40,10 @@ public class JpaUserRepository implements UserRepository {
     @Override
     public boolean existsByEmail(Email email) {
         return repository.existsByEmail(email);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        repository.delete(user);
     }
 }
