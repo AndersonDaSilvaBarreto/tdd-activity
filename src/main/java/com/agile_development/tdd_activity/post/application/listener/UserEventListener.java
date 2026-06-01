@@ -13,7 +13,6 @@ public class UserEventListener {
 
     @ApplicationModuleListener
     public void on (UserDeletedEvent event) {
-        System.out.println("EVENTO RECEBIDO: " + event.id());
         repository.deleteAllByAuthorId(event.id());
     }
 

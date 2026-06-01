@@ -6,6 +6,9 @@ import com.agile_development.tdd_activity.post.domain.valueobject.Content;
 import com.agile_development.tdd_activity.post.web.dto.CreatePostRequest;
 import com.agile_development.tdd_activity.post.web.dto.PostResponse;
 import com.agile_development.tdd_activity.user.api.UserApi;
+import com.agile_development.tdd_activity.user.domain.entity.User;
+import com.agile_development.tdd_activity.user.domain.valueobject.Email;
+import com.agile_development.tdd_activity.user.domain.valueobject.Name;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +28,7 @@ public class CreatePostUseCase {
         if(!userExists) {
             throw new RuntimeException("User not found");
         }
+
         Post newPost = Post.create(
                 content,
                 request.authorId()
